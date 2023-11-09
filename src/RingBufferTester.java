@@ -25,8 +25,11 @@ public class RingBufferTester {
             System.out.println("FAILED TEST 3");  
         
         // test 4
+        System.out.println(rb.toString());
         rb.enqueue(0.0);
+        System.out.println(rb.toString());
         rb.enqueue(1.0);
+        System.out.println(rb.toString());
         System.out.print(rb + " expect [0.0, 1.0]: ");
         if(rb.toString().equals("[0.0, 1.0]"))
             System.out.println("PASSED TEST 4");
