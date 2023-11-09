@@ -6,7 +6,7 @@
  *  Plays two guitar strings (concert A and concert C) when the user
  *  types the lowercase letters 'a' and 'c', respectively in the 
  *  standard drawing window.
- *
+ *1
  ****************************************************************************/
 
 public class GuitarHeroLite {
