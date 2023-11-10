@@ -3,10 +3,12 @@ import java.util.Random;
 public class GuitarString {
 	
 	public RingBuffer ringBuffer;
+	public int cap;
+	public int count;
 	
 	public GuitarString (double frequency)
 	{
-		int cap = (int) Math.round(44100.0 / frequency);
+		cap = (int) Math.ceil(44100.0 / frequency);
 		ringBuffer = new RingBuffer(cap);
 		
 		for(int x = 0; x < cap; x++)
@@ -17,13 +19,13 @@ public class GuitarString {
 	
 	 public GuitarString (double[] init)
 	{
-		int capacity = init.length;
+		cap = init.length;
 		ringBuffer = new RingBuffer(cap);
 		
 		for( double val: init)
 		{
 			
-			ringBuffer.enqueue(value);
+			ringBuffer.enqueue(val);
 		}
 		
 		
@@ -31,37 +33,37 @@ public class GuitarString {
 	
 	public void pluck()
 	{
-		Random ranval = new Random();
-		
-		int cap = ringBuffer.cap();
+		Random random = new Random();
 		
 		for(int x =0; x < cap; x++)
 		{
 			
-			Double ranVal = ranval.nextDouble() - 0.5;
+			double ranVal = (random.nextDouble() * 1.0)-0.5;
 			
 			ringBuffer.dequeue();
 			ringBuffer.enqueue(ranVal);
 		}
 	}
 	
-	void tic()
+	public void tic()
 	{
+
 		//The energy decay factor (.994 in this case) models the slight dissipation in energy as the wave makes a roundtrip through the string.
 		ringBuffer.dequeue();
 		ringBuffer.peek();
+
+		count++;
+	}
+	
+	public double sample()
+	{
+		return ringBuffer.peek();
 		
 	}
 	
-	double sample()
+	public int time()
 	{
-		return 0;
-		
-	}
-	
-	int time()
-	{
-		return 0;
+		return count;
 		
 	}
 

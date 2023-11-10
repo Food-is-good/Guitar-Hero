@@ -71,7 +71,6 @@ public class RingBuffer {
 	}
 	
 	public String toString() {
-		System.out.println(buffer[0]);
 		String t = "[";
 		for(int i = 0; i<size()-1; i++) {
 			t+=buffer[(first+i)%cC]+", ";

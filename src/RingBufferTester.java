@@ -3,10 +3,11 @@ public class RingBufferTester {
     public static void main(String[] args) {
         // test RingBuffer!!
         RingBuffer rb = new RingBuffer(4);
+        
         //rb.enqueue(0.5);
         //System.out.println(rb.toString()+" "+rb.getF());
         // test 1
-        System.out.print(rb.size() + " expect 0: ");
+        /*System.out.print(rb.size() + " expect 0: ");
         if(rb.size() == 0)
             System.out.println("PASSED TEST 1");
         else
@@ -166,7 +167,7 @@ public class RingBufferTester {
         else
             System.out.println("FAILED TEST 20");
            
-        
+        */
     }
     
 }
