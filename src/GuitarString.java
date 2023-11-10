@@ -49,8 +49,9 @@ public class GuitarString {
 	{
 
 		//The energy decay factor (.994 in this case) models the slight dissipation in energy as the wave makes a roundtrip through the string.
-		ringBuffer.dequeue();
-		ringBuffer.peek();
+		Double temp = ringBuffer.dequeue();
+		
+		ringBuffer.enqueue(0.994*((temp+ringBuffer.peek())/2));
 
 		count++;
 	}
