@@ -3,6 +3,8 @@ public class RingBufferTester {
     public static void main(String[] args) {
         // test RingBuffer!!
         RingBuffer rb = new RingBuffer(4);
+        //rb.enqueue(0.5);
+        //System.out.println(rb.toString()+" "+rb.getF());
         // test 1
         System.out.print(rb.size() + " expect 0: ");
         if(rb.size() == 0)
@@ -25,11 +27,8 @@ public class RingBufferTester {
             System.out.println("FAILED TEST 3");  
         
         // test 4
-        System.out.println(rb.toString());
         rb.enqueue(0.0);
-        System.out.println(rb.toString());
         rb.enqueue(1.0);
-        System.out.println(rb.toString());
         System.out.print(rb + " expect [0.0, 1.0]: ");
         if(rb.toString().equals("[0.0, 1.0]"))
             System.out.println("PASSED TEST 4");
@@ -166,6 +165,8 @@ public class RingBufferTester {
             System.out.println("PASSED TEST 20");
         else
             System.out.println("FAILED TEST 20");
+           
         
     }
+    
 }

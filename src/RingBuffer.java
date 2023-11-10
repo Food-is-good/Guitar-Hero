@@ -3,19 +3,25 @@ import java.util.NoSuchElementException;
 public class RingBuffer {
 	
 	public double[] buffer;
+	public int cC;
+	public int size;
+	public int first;
+	public int last;
 	
 	public RingBuffer(int capacity) {
-		buffer = new double[capacity];
+		cC = capacity;
+		buffer = new double[cC];
+		first = 0;
+		last = 0;
+		size = 0;
 	}
 	
 	public int size() {
-		int sum = 0;
-		for(double i : buffer) {
-			if(!(i==0.0)) {
-				sum++;
-			}
-		}
-		return sum;
+		return size;
+	}
+	
+	public String getF() {
+		return " "+first+" "+last;
 	}
 	
 	public boolean isEmpty() {
@@ -31,7 +37,9 @@ public class RingBuffer {
 			throw new IllegalStateException();
 		}
 		else {
-			buffer[size()] = x;
+			buffer[last] = x;
+			last = (last+1)%cC;
+			size++;
 		}
 	}
 	
@@ -40,15 +48,12 @@ public class RingBuffer {
 			throw new NoSuchElementException();
 		}
 		else {
-			for(int i = 0; i<buffer.length; i++) {
-				if(!(buffer[i]==0.0)) {
-					Double temp = buffer[i-1];
-					buffer[i-1] = 0.0;
-					return temp;
-				}
-			}
+			size--;
+			Double temp = buffer[first];
+			buffer[first] = 0.0;
+			first = (first+1)%cC;
+			return temp;
 		}
-		return 0.0;
 	}
 	
 	public double peek() {
@@ -66,11 +71,17 @@ public class RingBuffer {
 	}
 	
 	public String toString() {
+		System.out.println(buffer[0]);
 		String t = "[";
-		for(double i : buffer) {
-			t+=String.valueOf(i)+", ";
+		for(int i = 0; i<size()-1; i++) {
+			t+=buffer[(first+i)%cC]+", ";
 		}
-		t+="]";
+		if(!isEmpty()) {
+			t+=buffer[(first+(size()-1))%cC]+"]";
+		}
+		else {
+			t+="]";
+		}
 		return t;
 	}
 }
