@@ -2,10 +2,12 @@ import java.util.Random;
 
 public class GuitarString {
 	
+	public RingBuffer ringBuffer;
+	
 	public GuitarString (double frequency)
 	{
 		int cap = (int) Math.round(44100.0 / frequency);
-		RingBuffer ringBuffer = new RingBuffer(cap);
+		ringBuffer = new RingBuffer(cap);
 		
 		for(int x = 0; x < cap; x++)
 		{
@@ -16,12 +18,12 @@ public class GuitarString {
 	 public GuitarString (double[] init)
 	{
 		int capacity = init.length;
-		RingBuffer = new RingBuffer(cap);
+		ringBuffer = new RingBuffer(cap);
 		
 		for( double val: init)
 		{
 			
-			RingBuffer.enqueue(value);
+			ringBuffer.enqueue(value);
 		}
 		
 		
@@ -36,15 +38,12 @@ public class GuitarString {
 		for(int x =0; x < cap; x++)
 		{
 			
-			 ranval = random.nextDouble() - 0.5;
+			Double ranVal = ranval.nextDouble() - 0.5;
 			
-			RingBuffer.dequeue();
-			RingBuffer.enqueue(ranval);
+			ringBuffer.dequeue();
+			ringBuffer.enqueue(ranVal);
 		}
 	}
-	
-	
-	
 	
 	void tic()
 	{
