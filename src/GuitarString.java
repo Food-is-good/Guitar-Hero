@@ -4,6 +4,7 @@ public class GuitarString {
 	
 	public RingBuffer ringBuffer;
 	public int cap;
+	public int count;
 	
 	public GuitarString (double frequency)
 	{
@@ -32,34 +33,32 @@ public class GuitarString {
 	
 	public void pluck()
 	{
-		Random ranval = new Random();
-		
-		int cap = ringBuffer.cap();
+		Random random = new Random();
 		
 		for(int x =0; x < cap; x++)
 		{
 			
-			Double ranVal = ranval.nextDouble() - 0.5;
+			double ranVal = (random.nextDouble() * 1.0)-0.5;
 			
 			ringBuffer.dequeue();
 			ringBuffer.enqueue(ranVal);
 		}
 	}
 	
-	void tic()
+	public void tic()
 	{
+		count++;
+	}
+	
+	public double sample()
+	{
+		return ringBuffer.peek();
 		
 	}
 	
-	double sample()
+	public int time()
 	{
-		return 0;
-		
-	}
-	
-	int time()
-	{
-		return 0;
+		return count;
 		
 	}
 
