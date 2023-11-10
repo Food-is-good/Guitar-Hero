@@ -3,10 +3,11 @@ import java.util.Random;
 public class GuitarString {
 	
 	public RingBuffer ringBuffer;
+	public int cap;
 	
 	public GuitarString (double frequency)
 	{
-		int cap = (int) Math.round(44100.0 / frequency);
+		cap = (int) Math.ceil(44100.0 / frequency);
 		ringBuffer = new RingBuffer(cap);
 		
 		for(int x = 0; x < cap; x++)
@@ -17,13 +18,13 @@ public class GuitarString {
 	
 	 public GuitarString (double[] init)
 	{
-		int capacity = init.length;
+		cap = init.length;
 		ringBuffer = new RingBuffer(cap);
 		
 		for( double val: init)
 		{
 			
-			ringBuffer.enqueue(value);
+			ringBuffer.enqueue(val);
 		}
 		
 		
