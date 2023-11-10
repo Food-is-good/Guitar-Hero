@@ -5,11 +5,11 @@ public class GuitarString {
 	public GuitarString (double frequency)
 	{
 		int cap = (int) Math.round(44100.0 / frequency);
-		RingBuffer = new RingBuffer(cap);
+		RingBuffer ringBuffer = new RingBuffer(cap);
 		
 		for(int x = 0; x < cap; x++)
 		{
-			RingBuffer.enqueue(0.0);
+			ringBuffer.enqueue(0.0);
 		}
 	}
 	
