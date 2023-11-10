@@ -47,6 +47,9 @@ public class GuitarString {
 	
 	void tic()
 	{
+		//The energy decay factor (.994 in this case) models the slight dissipation in energy as the wave makes a roundtrip through the string.
+		ringBuffer.dequeue();
+		ringBuffer.peek();
 		
 	}
 	
