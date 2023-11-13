@@ -63,7 +63,7 @@ public class RingBuffer {
 		else {
 			for(int i = 0; i<buffer.length; i++) {
 				if(!(buffer[i]==0.0)) {
-					return buffer[i-1];
+					return buffer[first];
 				}
 			}
 		}
