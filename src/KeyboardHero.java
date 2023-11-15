@@ -2,23 +2,36 @@
 public class KeyboardHero {
 	
 	public static String song = "cbm;/;mbcnm/mvcbm;/;,mvccdcdz[pzcvbvczbmbvcvc=[=xcvdczd=bvccdc=[zcmnmnbbvcz=vbvc ";
-	public static String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
+	public static String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/'S";
 	public static char key;
 	public static GuitarString[] ta;
 	
 	public static void main(String[] args) {
 		
-		final double TEXT_POS_X = .5;
-        final double TEXT_POS_Y = .5;
+		double TEXT_POS_X = .5;
+        double TEXT_POS_Y = 1;
+        
+        double[] cnt = new double[song.length()];
+        
         
         ta = new GuitarString[keyboard.length()];
 		
 		for(int i = 0; i<keyboard.length(); i++) {
-			ta[i] = new GuitarString(440*Math.pow(1.05956, i-25));
+			ta[i] = new GuitarString(440*Math.pow(1.05956, i-24));
 		}
-
+		
+		for(int i = 0; i<cnt.length; i++) {
+			cnt[i] = 1;
+		}
+		
+		int count = -1; 
+		
 		for(char a : song.toCharArray()) {
+			count++;
 			boolean correct = true;
+			
+			TEXT_POS_X = (keyboard.indexOf(a))/35.0;
+			TEXT_POS_Y = cnt[count];
 			
 			StdDraw.text(TEXT_POS_X, TEXT_POS_Y, String.valueOf(a));
 			
@@ -46,6 +59,8 @@ public class KeyboardHero {
 		        }
 		        
 		        StdAudio.play(sample);
+		        cnt[count]-=0.01;
+		        
 			}
 			
 		}		
@@ -57,7 +72,6 @@ public class KeyboardHero {
 
         if(keyboard.indexOf(String.valueOf(key))!=-1) {
         	temp = keyboard.indexOf(String.valueOf(key));
-        	System.out.println(temp);
         	ta[temp].pluck();
         }  
         
