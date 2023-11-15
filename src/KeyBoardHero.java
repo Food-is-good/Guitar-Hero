@@ -1,5 +1,5 @@
 
-public class KeyBoardHero {
+public class KeyboardHero {
 	
 	public static String song = "cbm;/;mbcnm/mvcbm;/;,mvccdcdz[pzcvbvczbmbvcvc=[=xcvdczd=bvccdc=[zcmnmnbbvcz=vbvc ";
 	public static String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
@@ -23,8 +23,6 @@ public class KeyBoardHero {
 			StdDraw.text(TEXT_POS_X, TEXT_POS_Y, String.valueOf(a));
 			
 			while(correct) {
-				
-				
 				
 				if(StdDraw.hasNextKeyTyped()) {
 					key = StdDraw.nextKeyTyped();
